@@ -1,0 +1,147 @@
+<mat-table #table [dataSource]="dataSource">
+  
+      <!-- Id Column -->
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef>Id </mat-header-cell>
+        <mat-cell *matCellDef="let salon"> 
+                {{salon.id}}    
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Menu Name Column -->
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let salon">
+                {{salon.salonName}}
+        </mat-cell>
+      </ng-container>
+
+       <!-- Address Column -->
+       <ng-container matColumnDef="Address">
+          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+          <mat-cell *matCellDef="let salon">
+                  {{salon.address}}
+          </mat-cell>
+        </ng-container>
+
+         <!-- Capacity Column -->
+      <ng-container matColumnDef="Capacity">
+          <mat-header-cell *matHeaderCellDef> Capacity </mat-header-cell>
+          <mat-cell *matCellDef="let salon">
+                  {{salon.capacity}}
+          </mat-cell>
+        </ng-container>
+        
+             <!-- Surface Column -->
+      <ng-container matColumnDef="Surface">
+          <mat-header-cell *matHeaderCellDef> Surface </mat-header-cell>
+          <mat-cell *matCellDef="let salon">
+                  {{salon.surface}}
+          </mat-cell>
+        </ng-container>
+
+             <!-- Dance Floor Column -->
+      <ng-container matColumnDef="Dance Floor">
+        <mat-header-cell *matHeaderCellDef> Dance Floor </mat-header-cell>
+        <mat-cell *matCellDef="let salon">
+                {{salon.danceFloor}}
+        </mat-cell>
+      </ng-container>
+           <!-- Terrace Column -->
+           <ng-container matColumnDef="Terrace">
+            <mat-header-cell *matHeaderCellDef> Terrace </mat-header-cell>
+            <mat-cell *matCellDef="let salon">
+                    {{salon.terrace}}
+            </mat-cell>
+          </ng-container>
+               <!-- Parking Column -->
+      <ng-container matColumnDef="Parking">
+        <mat-header-cell *matHeaderCellDef> Parking </mat-header-cell>
+        <mat-cell *matCellDef="let salon">
+                {{salon.parking}}
+        </mat-cell>
+      </ng-container>
+      
+       <!-- Edit Column -->
+       <ng-container matColumnDef="Edit">
+            <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+            <mat-cell *matCellDef="let salon"> 
+                <button   mat-icon-button color="primary"  type="button"
+                (click)="loadSalonToEdit(salon.id)">
+                  <i class="material-icons">edit</i></button>   
+            </mat-cell>
+      </ng-container>
+      
+       <!-- Delete Column -->
+       <ng-container matColumnDef="Delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let salon"> 
+                    <button   mat-icon-button  color="warn"  type="button" 
+                    (click)="deleteSalon(salon.id)"> <i class="material-icons">delete</i></button>    
+            </mat-cell>
+      </ng-container>
+
+       <!-- Add Column -->
+       <ng-container matColumnDef="Add">
+        <mat-header-cell *matHeaderCellDef>   
+           <button   mat-icon-button  color="primary"  type="button"  (click)="loadSalonToAdd()">
+           <i class="material-icons">add</i></button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let salon">     
+        </mat-cell>
+  </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  <div>
+
+<br>
+<br>
+
+       <form *ngIf="salonIdToUpdate"  [formGroup]="salonForm"   (ngSubmit)="onSalonFormSubmit(salonForm.value)">
+               <mat-form-field >
+                <input matInput class="form-control"  id="salonNameId" type="text" 
+                placeholder="Salon Name"
+                formControlName="salonName" required>
+              </mat-form-field>
+             
+             <mat-form-field >
+                <input matInput class="form-control"  id="addressId" type="text" 
+                placeholder="Address"
+                formControlName="address" required>
+              </mat-form-field>
+              
+              <mat-form-field >
+                <input matInput class="form-control"  id="capacityId" type="text" 
+                placeholder="Capacity"
+                formControlName="capacity" required>
+              </mat-form-field>
+
+              <mat-form-field >
+                <input matInput class="form-control"  id="surfaceId" type="text" 
+                placeholder="Surface"
+                formControlName="surface" required>
+              </mat-form-field>
+              
+              
+              <mat-checkbox   formControlName="danceFloor"  [(ngModel)]="checked">
+                 Dance Floor 
+              </mat-checkbox>
+              
+
+             <mat-checkbox   formControlName="terrace"  [(ngModel)]="checked1">
+                   Terrace
+             </mat-checkbox>
+
+             <mat-checkbox   formControlName="parking"  [(ngModel)]="checked2">
+                    Parking 
+            </mat-checkbox>
+               
+              <button   mat-button color="accent">Save</button> 
+             
+            </form>
+           
+ 
+
+

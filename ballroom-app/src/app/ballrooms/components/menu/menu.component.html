@@ -1,0 +1,110 @@
+
+ <mat-table #table [dataSource]="dataSource">
+  
+      <!-- Id Column -->
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef>Id </mat-header-cell>
+        <mat-cell *matCellDef="let menu"> 
+                {{menu.id}}    
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Menu Name Column -->
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let menu">
+                {{menu.menuName}}
+        </mat-cell>
+      </ng-container>
+
+       <!-- Menu Type Column -->
+       <ng-container matColumnDef="Type">
+          <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+          <mat-cell *matCellDef="let menu">
+                  {{menu.menuType}}
+          </mat-cell>
+        </ng-container>
+
+         <!-- Price Column -->
+      <ng-container matColumnDef="Price">
+          <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+          <mat-cell *matCellDef="let menu">
+                  {{menu.price}}
+          </mat-cell>
+        </ng-container>
+        
+             <!-- Description Column -->
+      <ng-container matColumnDef="Description">
+          <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+          <mat-cell *matCellDef="let menu">
+                  {{menu.description}}
+          </mat-cell>
+        </ng-container>
+      
+       <!-- Edit Column -->
+       <ng-container matColumnDef="Edit">
+            <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+            <mat-cell *matCellDef="let menu"> 
+                <button   mat-icon-button color="primary"  type="button"
+                (click)="loadMenuToEdit(menu.id)">
+                  <i class="material-icons">edit</i></button>   
+            </mat-cell>
+      </ng-container>
+      
+       <!-- Delete Column -->
+       <ng-container matColumnDef="Delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let menu"> 
+                    <button   mat-icon-button  color="warn"  type="button" 
+                    (click)="deleteMenu(menu.id)"> <i class="material-icons">delete</i></button>    
+            </mat-cell>
+      </ng-container>
+
+       <!-- Add Column -->
+       <ng-container matColumnDef="Add">
+        <mat-header-cell *matHeaderCellDef>   
+           <button   mat-icon-button  color="primary"  type="button"  (click)="loadMenuToAdd()">
+           <i class="material-icons">add</i></button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let contact">     
+        </mat-cell>
+  </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  <div>
+
+<br>
+<br>
+
+<form *ngIf="menuIdToUpdate" [formGroup]="menuForm"   (ngSubmit)="onMenuFormSubmit(menuForm.value)">
+    <mat-form-field>
+      <input matInput class="form-control"  id="menuNameId" type="text" 
+      placeholder="Menu Name"
+      formControlName="menuName" required>
+    </mat-form-field>
+   
+    <mat-form-field>
+      <!--<input matInput class="form-control"  id="menuTypeId" type="text" 
+      placeholder="Menu Type"
+      formControlName="menuType" required>-->
+      <mat-select lass="form-control"  id="menuTypeId" type="text" 
+      placeholder="Menu Type"
+      formControlName="menuType" required>
+          <mat-option *ngFor="let type of types" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field >
+        <input matInput placeholder="Price" formControlName="price" type="text" required >
+      </mat-form-field>
+     
+      <mat-form-field>
+        <textarea matInput placeholder="Description" formControlName="description" type="text" required></textarea>
+      </mat-form-field>
+
+      <button   mat-button color="accent">Save</button> 
+</form>

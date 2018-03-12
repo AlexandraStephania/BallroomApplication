@@ -1,0 +1,51 @@
+
+    <mat-card *ngIf="ballroom" class="detail-card">
+        <mat-card-header>
+          <mat-card-title><h4>{{ pageTitle }} :{{ ballroom.ballroomName }}</h4></mat-card-title>
+          <mat-card-subtitle>{{ballroom.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <br>
+        <mat-card-content>
+           <mat-tab-group>
+              <mat-tab label="Contact">
+                <br>
+                <app-contact  [contactBallroomId]="ballroom.id"></app-contact>      
+              </mat-tab>
+              <mat-tab label="Menus">
+                <br>
+               <app-menu   [menuBallroomId]="ballroom.id" ></app-menu>
+              </mat-tab>
+              <mat-tab label="Salons">
+                <br>
+                <app-salon   [salonBallroomId]="ballroom.id" ></app-salon>
+              </mat-tab>
+
+           </mat-tab-group>
+         
+        </mat-card-content>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <mat-card-actions align="right" >
+          <button mat-fab color="accent"   type="button" [routerLink]="['/ballrooms']">Back</button>
+          <!-- <button mat-fab  color="primary"  type="button" [routerLink]="['/ballroom', ballroom.id, 'edit']">Edit</button>  --> 
+        </mat-card-actions>
+      </mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

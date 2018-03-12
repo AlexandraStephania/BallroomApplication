@@ -1,0 +1,147 @@
+
+ <mat-table #table [dataSource]="dataSource">
+    
+        <!-- Id Column -->
+        <ng-container matColumnDef="Id">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let contact"> 
+                  {{contact.id}}    
+          </mat-cell>
+        </ng-container>
+    
+        <!-- Phone Column -->
+        <ng-container matColumnDef="Phone">
+          <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+          <mat-cell *matCellDef="let contact">
+                  {{contact.telephone}}
+          </mat-cell>
+        </ng-container>
+
+         <!-- Email Column -->
+         <ng-container matColumnDef="Email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+                    {{contact.email}}
+            </mat-cell>
+          </ng-container>
+
+           <!-- Address Column -->
+        <ng-container matColumnDef="Address">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+                    {{contact.address}}
+            </mat-cell>
+          </ng-container>
+          
+               <!-- Site Column -->
+        <ng-container matColumnDef="Site">
+            <mat-header-cell *matHeaderCellDef> Site </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+                    {{contact.site}}
+            </mat-cell>
+          </ng-container>
+        
+         <!-- Edit Column -->
+         <ng-container matColumnDef="Edit">
+              <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+              <mat-cell *matCellDef="let contact"> 
+                  <button   mat-icon-button color="primary"  type="button"
+                  (click)="loadContactToEdit(contact.id)">
+                    <i class="material-icons">edit</i></button>   
+              </mat-cell>
+        </ng-container>
+        
+         <!-- Delete Column -->
+         <ng-container matColumnDef="Delete">
+              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-cell *matCellDef="let contact"> 
+                      <button   mat-icon-button  color="warn"  type="button" 
+                      (click)="deleteContact(contact.id)"> <i class="material-icons">delete</i></button>    
+              </mat-cell>
+        </ng-container>
+
+         <!-- Add Column -->
+         <ng-container matColumnDef="Add">
+          <mat-header-cell *matHeaderCellDef>   
+             <button   mat-icon-button  color="primary"  type="button"  (click)="loadContactToAdd()">
+             <i class="material-icons">add</i></button>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let contact">     
+          </mat-cell>
+    </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+  
+
+<br>
+<br>
+<div>
+<form *ngIf="contactIdToUpdate" [formGroup]="contactForm"   (ngSubmit)="onContactFormSubmit(contactForm.value)">
+    <mat-form-field>
+        <span matPrefix>+ &nbsp;</span>
+      <input matInput class="form-control"  id="phoneId" type="tel" 
+      placeholder="Telephone"
+      formControlName="telephone" required>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    
+    <mat-form-field >
+        <input matInput placeholder="Email" formControlName="email" required>
+      </mat-form-field>
+
+    <mat-form-field>
+      <input matInput class="form-control" id="addressId"  type="text"
+      placeholder="Address" formControlName="address" required>
+    </mat-form-field>
+    
+
+    <mat-form-field>
+        <input matInput class="form-control" id="siteId"  type="text"
+        placeholder="Web site" formControlName="site" required>
+      </mat-form-field>
+      
+      <button   mat-button color="accent">Save</button>  
+    
+  </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
